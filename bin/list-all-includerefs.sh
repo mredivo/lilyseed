@@ -37,6 +37,6 @@ for f in `find ${REPO_BASE}/include -type f -name '*ly'`; do
 done
 
 # Put the CSV headers into the output file, followed by sorted unique list
-echo "File,Era,Project" > $XREFFILE
+echo "File,Category,Opus" > $XREFFILE
 sort -u $TMPFILE >> $XREFFILE
 rm $TMPFILE

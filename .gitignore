@@ -5,8 +5,8 @@
 /site-parameters.ily
 
 # The src/ folder should be preserved, but all its contents ignored.
+# This permits "git clone"ing another repo containing only music into here.
 /src/
-!/src/.gitkeep
 
 # Lilypond build output
 output/

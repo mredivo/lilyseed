@@ -8,20 +8,30 @@
 REPO_BASE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)
 SCORE_ROOT=$REPO_BASE/src
 
-# Perform validation of the input
+# Print a usage message, and quit
 usage() {
-    echo "Usage: `basename $0` era opus\nSelect Era category from:"
+    echo "Usage: `basename $0` category opus\nSelect Category from:"
     ls -1 $SCORE_ROOT | grep '^[A-Z]' | awk '{printf "    %s\n", $1}'
     exit 1
 }
 
+# Check for a fresh install. If necessary, create and populate the src/
+# directory with some default subdirectories.
+if [ ! -d $SCORE_ROOT ]; then
+    echo "Initializing score repository in \"$SCORE_ROOT\""
+    for category in Piano Choir Medieval Renaissance Baroque Classical Modern ; do
+        mkdir -p $SCORE_ROOT/$category
+    done
+fi
+
+# Perform validation of the input
 if [ -z "$1" ]; then
-    echo "No Era category provided"
+    echo "No Category provided"
     usage
 fi
 
 if [ ! -d "$SCORE_ROOT/$1" ]; then
-    echo "Era category \"$1\" does not exist"
+    echo "Category \"$1\" does not exist"
     usage
 fi
 
@@ -31,7 +41,7 @@ if [ -z "$2" ]; then
 fi
 
 if [ -d "$SCORE_ROOT/$1/$2" ]; then
-    echo "Opus \"$2\" already exists in Era category $1"
+    echo "Opus \"$2\" already exists in Category $1"
     usage
 fi
 
