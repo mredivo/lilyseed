@@ -4,6 +4,10 @@
 # It should be modified to suit local values, and should not be committed.
 /site-parameters.ily
 
+# The src/ folder should be preserved, but all its contents ignored.
+/src/
+!/src/.gitkeep
+
 # Lilypond build output
 output/
 
