@@ -17,11 +17,14 @@ usage() {
 
 # Check for a fresh install. If necessary, create and populate the src/
 # directory with some default subdirectories.
+# Note: the include/ directory is also created and populated.
 if [ ! -d $SCORE_ROOT ]; then
     echo "Initializing score repository in \"$SCORE_ROOT\""
-    for category in Piano Choir Medieval Renaissance Baroque Classical Modern ; do
+    for category in include Piano Choir Medieval Renaissance Baroque Classical Modern ; do
         mkdir -p $SCORE_ROOT/$category
     done
+    cp $REPO_BASE/template/include/* $SCORE_ROOT/include
+    ln -s "../site-parameters.ily" $SCORE_ROOT/include/site-parameters.ily
 fi
 
 # Perform validation of the input
@@ -62,7 +65,7 @@ if [[ ! $NXTLVL == $REPO_BASE ]]; then
     while : ; do
         CURLVL=`basename $NXTLVL`
         NXTLVL=`dirname $NXTLVL`
-        [[ $NXTLVL == $REPO_BASE ]] && break
+        [[ $NXTLVL == $SCORE_ROOT ]] && break
         DEPTH=$DEPTH/..
     done
 fi
@@ -70,9 +73,9 @@ echo "    /include --> $DEPTH/include"
 ln -s $DEPTH/include $PROJECTDIR/include
 
 # Copy in the template files
-if [ ! -f "$REPO_BASE/site-parameters.ily" ]; then
-    echo "\nCreating new \"/site-parameters.ily\" -- **EDIT TO SUIT YOUR REQUIREMENTS**\n"
-    cp $REPO_BASE/template/site-parameters.ily $REPO_BASE
+if [ ! -f "$SCORE_ROOT/site-parameters.ily" ]; then
+    echo "\nCreating new \"src/site-parameters.ily\" -- **EDIT TO SUIT YOUR REQUIREMENTS**\n"
+    cp $REPO_BASE/template/site-parameters.ily $SCORE_ROOT
 fi
 
 # Copy in the template files
