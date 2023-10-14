@@ -1,6 +1,35 @@
-*.pdf
-*.ps
-*.midi
-*.mid
-*.log
+# .gitignore for lilyseed project
+
+# site-parameters.ily is created the first time new-from-template is run.
+# It should be modified to suit local values, and should not be committed.
+/site-parameters.ily
+
+# Lilypond build output
+output/
+
+# When upgrading Lilypond, I like to keep output from the prior version
+# around, for comparison with newly generated output.
+# This prevents it from accidentally being committed.
+OLD-output/
+
+# Frescobaldi builds into the same directory as the source .ly file,
+# so we ignore build outputs found there, too.
+**/book/*.pdf
+**/book/*.ps
+**/book/*.midi
+**/book/*.mid
+
+# Make creates somes files that should be ignored
+deps.mk
+referenced-includes.txt
+
+# Don't save the output from bin/list-all-includerefs.sh
+/usage-of-includes.csv
+
+# Other files to be skipped
+.DS_Store
 *~
+*.swp
+*.tgz
+*.tar
+*.log
