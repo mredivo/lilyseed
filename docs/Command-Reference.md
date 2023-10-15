@@ -8,11 +8,63 @@ All the **lilyseed** commands are implemented as individual shell scripts.
 - [generate-dependencies.sh](#generate-dependenciessh)
 
 ## new-from-template.sh
+Synopsis: `new-from-template.sh category opus`
 
 ## list-all-projects.sh
+Synopsis: `list-all-projects.sh [dirs]`
+
+Output (to stdout):
+- without arguments: a two-column list of projects by category
+```
+Baroque:	Corrette-Opus5
+Baroque:	Handel-Op1No7
+Modern:	demo-score
+```
+- with `dirs` argument: the full path to each directory containing a `makefile`
+```
+lilyseed$ list-all-projects.sh dirs
+/.../lilyseed/src/Baroque/Corrette-Opus5
+/.../lilyseed/src/Baroque/Handel-Op1No7
+/.../lilyseed/src/Modern/demo-score
+```
 
 ## list-all-includerefs.sh
+Synopsis: `list-all-includerefs.sh`
+
+Output: `src/usage-of-includes.csv`
+
+Generate a CSV file listing every reference to a file in the `src/include/`
+directory from any Lilypond source file.
+
+This depends on finding the `referenced-includes.txt` file created by
+running `make deps` to update project dependencies.
+
+Sample output:
+```
+File,Category,Opus
+./include/baroque-layout.ily,,
+./include/baroque-layout.ily,Baroque,Corrette-Opus5
+./include/baroque-layout.ily,Baroque,Handel-Op1No7
+./include/baroque-paper.ily,,
+./include/baroque-paper.ily,Baroque,Corrette-Opus5
+./include/baroque-paper.ily,Baroque,Handel-Op1No7
+./include/layout.ily,,
+./include/paper.ily,,
+<...>
+```
 
 ## make-all.sh
+Synopsis: `make-all.sh`
+
+Output: Build every project in the entire directory structure under `src/`.
+
+This command depends on `list-all-projects.sh` to visit them in turn and
+execute `make` in their project directories. It can be useful when upgrading
+Lilypond to ensure that all your scores still build successfully.
 
 ## generate-dependencies.sh
+Synopsis: `generate-dependencies.sh bookdir`
+
+Output: `deps.mk`, `referenced-includes.txt`
+
+For internal use by the Makefiles.
