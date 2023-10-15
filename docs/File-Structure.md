@@ -1,4 +1,4 @@
-# Directory Structure
+# File Structure
 All **lilyseed** files are contained in either the `bin/` directory or the the
 `template/` directory and its subdirectories.
 
