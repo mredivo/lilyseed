@@ -149,5 +149,12 @@ Once you are done with project `demo-score`, it can simply be removed with:
 
 This will remove all traces of the project, without any collateral damage.
 
+# Frescobaldi
+The [Frescobaldi](https://www.frescobaldi.org/) project offers a LilyPond sheet music
+text editor. It offers powerful features, such as being able to click on a note in the PDF of the score to move your cursor to that point in your music file.
+
+Nothing in **lilyseed** interferes with Frescobaldi in any way. I do my much of my editing in
+Frescobaldi, and then generate my final PDFs with **lilyseed**.
+
 ## Further Reading
 In progress.
