@@ -157,4 +157,4 @@ Nothing in **lilyseed** interferes with Frescobaldi in any way. I do my much of 
 Frescobaldi, and then generate my final PDFs with **lilyseed**.
 
 ## Further Reading
-In progress.
+See the `docs/` directory for more documentation.
