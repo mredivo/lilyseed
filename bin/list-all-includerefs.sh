@@ -11,7 +11,7 @@ REPO_BASE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)
 SCORE_ROOT=$REPO_BASE/src
 
 # The name of the CSV file where the results should be written
-XREFFILE=${REPO_BASE}/usage-of-includes.csv
+XREFFILE=${SCORE_ROOT}/usage-of-includes.csv
 
 # Create a temporary file to accumulate references from each project
 tmpbasename=`basename $0`
@@ -32,8 +32,8 @@ for f in `find ${SCORE_ROOT}/[A-Z]* -name referenced-includes.txt | sort`; do
 done
 
 # Also insert a line for each include file, to identify unreferenced files
-for f in `find ${REPO_BASE}/include -type f -name '*ly'`; do
-    echo "$f,," | sed "s!$REPO_BASE!.!" >> $TMPFILE
+for f in `find ${SCORE_ROOT}/include -type f -name '*ly'`; do
+    echo "$f,," | sed "s!$SCORE_ROOT!.!" >> $TMPFILE
 done
 
 # Put the CSV headers into the output file, followed by sorted unique list
