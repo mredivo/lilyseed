@@ -5,6 +5,7 @@ All **lilyseed** files are contained in either the `bin/` directory or the the
 ## Synopsis
 ```
 bin/
+docs/
 template/
 template/Category1/
 template/Category2/
@@ -32,6 +33,9 @@ src/Category/Project/referenced-includes.txt
 ### bin/
 - all the shell scripts provided with **lilyseed**, described elsewhere.
 
+### docs/
+- project documentation
+
 ### template/
 - a Makefile template
 - an `include/` directory containing a base set of .ily include files
@@ -54,5 +58,38 @@ Any directory in `src/` whose name starts with a capital letter defines a Catego
 in **lilyseed**. All music score projects will be located in these directories, or
 their subdirectories.
 
+**lilyseed** will create the following default categories if the `src/` directory
+does not exist the first time it is run:
+- Piano
+- Choir
+- Medieval
+- Renaissance
+- Baroque
+- Classical
+- Modern
+
 ## Project Files
-*in progress*
+**lilyseed** projects keep all the music for a score in one directory (`content/`), and
+all the layout information in another (`book/`). The files in the `book/` directory
+use Lilypond `\include` statements to bring in the actual notes for the score from
+the files in the `content/` directory. Likewise, common elements are included from
+the local `include/` directory (which is a symlink to `src/include/`).
+
+Every file in the `book/` directory whose name ends in `.ly` will be considered
+a build target, whereas other endings will not. For example:
+```
+book/Project-0-score.ly
+book/Project-1-bass.ly
+book/Project-1-treble.ly
+book/Project-2-common-elements.ily
+```
+
+When `make` is run, it will build the following:
+```
+output/Project-0-score.pdf
+output/Project-1-bass.pdf
+output/Project-1-treble.pdf
+```
+
+`Project-2-common-elements.ily` will be included as needed, will trigger builds if
+it changes, but will not be processed as a build target.
