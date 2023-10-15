@@ -10,6 +10,8 @@ All the **lilyseed** commands are implemented as individual shell scripts.
 ## new-from-template.sh
 Synopsis: `new-from-template.sh category opus`
 
+*in progress*
+
 ## list-all-projects.sh
 Synopsis: `list-all-projects.sh [dirs]`
 
