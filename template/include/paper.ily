@@ -5,7 +5,7 @@
 \paper {
   #(include-special-characters) % for copyright symbol
 
-  print-first-page-number = ##t
+  print-first-page-number = ##f
   ragged-bottom = ##t
   ragged-last-bottom = ##t
   print-all-headers = ##f
