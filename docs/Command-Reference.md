@@ -4,6 +4,7 @@ All the **lilyseed** commands are implemented as individual shell scripts.
 - [new-from-template.sh](#new-from-templatesh)
 - [list-all-projects.sh](#list-all-projectssh)
 - [list-all-includerefs.sh](#list-all-includerefssh)
+- [compare-includedirs.sh](#compare-includedirssh)
 - [make-all.sh](#make-allsh)
 - [generate-dependencies.sh](#generate-dependenciessh)
 
@@ -88,6 +89,15 @@ File,Category,Opus
 ./include/paper.ily,,
 <...>
 ```
+
+## compare-includedirs.sh
+Synopsis: `compare-includedirs.sh`
+
+Output: A `diff -u` comparison between every include file found in
+`templates/include/` and its copy in `src/include/`
+
+This command is useful to determine whether any include files provided with
+**lilyseed** have been locally modified.
 
 ## make-all.sh
 Synopsis: `make-all.sh`
