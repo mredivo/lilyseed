@@ -10,7 +10,41 @@ All the **lilyseed** commands are implemented as individual shell scripts.
 ## new-from-template.sh
 Synopsis: `new-from-template.sh category opus`
 
-*in progress*
+Inputs: Command line arguments; files under `templates/`
+
+Outputs: compilable skeleton project under `src/<category>/<opus>/`
+
+The `category` command-line argument is the name of a directory under `src/`.
+If this directory does not exist, the command fails and prints a usage
+message, which lists all the valid categories. The `category` argument can
+also be a path whose first element is the name of a valid category, if every
+element of the path already exists.
+
+The `opus` command-line argument is the name you want to give your new project.
+
+Running this command creates the following files and directories under
+`src/category/opus/`:
+```
+Makefile
+book/opus-0-score.ly
+content/piece_001.ily
+deps.mk
+distribution-header.ily
+include -> ../../include
+output/opus-0-score.midi
+output/opus-0-score.pdf
+referenced-includes.txt
+```
+
+You may now begin creating your score by editing `distribution-header.ily` and
+the files in `book/` and `content/`.
+
+Execute `make` in the project directory (containing the `Makefile`) each time you
+want to create your PDF output file.
+
+If you add more Lilypond `\include` statements to bring in additional files,
+run `make deps` to ensure that your project is rebuilt by Make if those
+additional files have been modified.
 
 ## list-all-projects.sh
 Synopsis: `list-all-projects.sh [dirs]`
