@@ -4,7 +4,6 @@
 DEPTH		:= XX_DEPTH_XX	# usually "../../.."
 REPO_BASE	:= XX_REPO_BASE_XX
 
-DISTHEADER	:= ./distribution-header.ly
 SOURCEDIR	:= ./book
 INCLUDEDIR	:= ./include
 CONTENTDIR	:= ./content
