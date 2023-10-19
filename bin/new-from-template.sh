@@ -7,6 +7,7 @@
 # Establish the repository base directory and root directory for scores
 REPO_BASE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)
 SCORE_ROOT=$REPO_BASE/src
+TITLEFILE=titles.ily
 
 # Print a usage message, and quit
 usage() {
@@ -80,11 +81,16 @@ fi
 
 # Copy in the template files
 echo "    copying files"
-cp $REPO_BASE/template/distribution-header.ily $PROJECTDIR
 if [ -d "$REPO_BASE/template/$1" ]; then
+    if [ -f "$REPO_BASE/template/$1/$TITLEFILE" ]; then
+        cp $REPO_BASE/template/$1/$TITLEFILE $PROJECTDIR
+    else
+        cp $REPO_BASE/template/$TITLEFILE $PROJECTDIR
+    fi
     cp $REPO_BASE/template/$1/example.ly $PROJECTDIR/book/${2}-0-score.ly
     cp $REPO_BASE/template/$1/piece_001.ily $PROJECTDIR/content
 else
+    cp $REPO_BASE/template/$TITLEFILE $PROJECTDIR
     cp $REPO_BASE/template/example.ly $PROJECTDIR/book/${2}-0-score.ly
     cp $REPO_BASE/template/piece_001.ily $PROJECTDIR/content
 fi

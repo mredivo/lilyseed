@@ -3,7 +3,7 @@
 %% Michel Corrette (1707 - 1795) Opus 5, Suite I, Vivement
 %%=============================================================
 SaaPaaPiece = "Vivement"
-SaaPaaOpus = "Opus 5, Suite 1, Piece 2"
+SaaPaaOpus = "Suite 1, Piece 2"
 SaaPaaMidiTempo = 30
 
 %% Treble staff

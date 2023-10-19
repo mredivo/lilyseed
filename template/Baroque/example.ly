@@ -36,7 +36,7 @@ staffBSettings = {
 
 % Text to be inserted in title pages, headers, and footers.
 \header {
-  \include "../distribution-header.ily"
+  \include "../titles.ily"
 }
 
 % Include all the music
