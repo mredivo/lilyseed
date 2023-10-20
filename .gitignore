@@ -4,9 +4,13 @@
 # It should be modified to suit local values, and should not be committed.
 /site-parameters.ily
 
-# The src/ folder should be preserved, but all its contents ignored.
-# This permits "git clone"ing another repo containing only music into here.
+# lilyseed writes all new scores into a subdirectory named "src/"; ignore it.
+# This is where the user's local git repo of scores should be kept.
 /src/
+
+# Reserve a directory for the user's public git repo, so that it can be
+# published to GitHub without involving lilyseed.
+/public/
 
 # Lilypond build output
 output/
