@@ -71,7 +71,8 @@ for srcbook in $1/*\.ly; do
             grep -v -e '/book/' -e '/include/' -e '/content/' | \
             awk -F '"' '{print $2}' | \
             sort -u | \
-            sed 's/\.\././'`"
+            sed 's!^\./!./book/!' |
+            sed 's/^\.\././'`"
 
         # Collect the dependencies in the /include directory.
         INCLUDES="$INCLUDES `egrep -v '^\s*%' $srcsubbook | grep '\\\\include' | \
