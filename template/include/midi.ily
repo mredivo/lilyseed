@@ -3,6 +3,13 @@
 %
 % Usage: lilypond -d midi FILE.ly
 %
+% To produce MIDI output unconditionally without needing a command line
+% argument (for example when using Frescobaldi), use the following
+% construct:
+%
+%   \include "../include/midi.ily"
+%   #(define *makeMidi* #t)
+%
 % Extract the command-line argument and store it.
 #(define *makeMidi* (if (ly:get-option 'midi) #t #f))
 
