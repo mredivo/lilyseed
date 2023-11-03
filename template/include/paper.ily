@@ -1,7 +1,5 @@
 \version "2.24.2"
 
-#(define inputFilename (cadr (string-split input-file-name #\/)))
-
 \paper {
   #(include-special-characters) % for copyright symbol
 
@@ -16,31 +14,21 @@
 
   oddFooterMarkup = \markup {
     \column {
-      \fill-line {
-        \if \on-first-page-of-part { \teeny #(string-append "File: " inputFilename) }
-        % Copyright header field only on first page in each bookpart.
-        \if \on-first-page-of-part \fromproperty #'header:copyright
+      % Copyright header field prints only on the first page in each bookpart
+      \if \on-first-page-of-part {
+        \fill-line {
+          \fromproperty #'header:copyright
+          \fromproperty #'header:inputFilename
+        }
       }
-      \fill-line {
-        % Tagline header field only on last page in the book.
-        \if \on-last-page \fromproperty #'header:tagline
+      % Tagline header field prints only on the final page
+      \if \on-last-page {
+        \fill-line {
+          \fromproperty #'header:tagline
+        }
       }
     }
   }
 
-  %% evenFooterMarkup would inherit the value of
-  %% oddFooterMarkup if it were not defined here
-  evenFooterMarkup = \markup {
-    \column {
-      \fill-line {
-        % Copyright header field only on first page in each bookpart.
-        \if \on-first-page-of-part \fromproperty #'header:copyright
-        \if \on-first-page-of-part { \teeny #(string-append "File: " inputFilename) }
-      }
-      \fill-line {
-        % Tagline header field only on last page in the book.
-        \if \on-last-page \fromproperty #'header:tagline
-      }
-    }
-  }
+  % evenFooterMarkup inherits the value of oddFooterMarkup unless defined here
 }
