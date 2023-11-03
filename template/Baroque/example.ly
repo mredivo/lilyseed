@@ -52,7 +52,7 @@ staffBSettings = {
       \staffASettings
       \SaaPaaVaa
     }
-    \new Staff = "figuredStaff"  \with { midiInstrument = "acoustic bass" }
+    \new FiguredBass = "figuredStaff"  \with { midiInstrument = "acoustic bass" }
     \SaaPaaFig
     \context Staff = "figuredStaff"
     {
