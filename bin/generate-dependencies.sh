@@ -102,6 +102,18 @@ for srcbook in $1/*\.ly; do
 
     done
 
+    # Recursively examine the files in the /include directory..
+    for srcinclude in $INCLUDES; do
+
+        # Collect the dependencies in the /include directory.
+        # NOTE: This deliberately ignores '\include's with leading spaces.
+        INCLUDES="$INCLUDES `grep '^\\\\include' $srcinclude | \
+            awk -F '"' '{print $2}' | \
+            sort -u | \
+            sed 's/\.\././'`"
+
+    done
+
     # Assemble the full dependency lists for the PDF and MIDI targets.
     PDFDEP=`echo "$PDFTARGET: $srcbook $BOOKS $DISTHEADER $CONTENTS $INCLUDES"`
     MIDIDEP=`echo "$MIDITARGET: $srcbook $BOOKS $DISTHEADER $CONTENTS $INCLUDES"`
