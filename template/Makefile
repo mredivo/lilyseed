@@ -54,6 +54,10 @@ midi: $(MIDIS)
 deps:
 	$(REPO_BASE)/bin/generate-dependencies.sh $(SOURCEDIR)
 
+.PHONY: bundle
+bundle:
+	$(REPO_BASE)/bin/make-bundle.sh
+
 .PHONY: clean
 clean: cleanpdf cleanmidi
 
