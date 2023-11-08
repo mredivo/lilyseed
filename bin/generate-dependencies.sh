@@ -102,15 +102,20 @@ for srcbook in $1/*\.ly; do
 
     done
 
-    # Recursively examine the files in the /include directory..
+    # Recursively examine the files in the /include directory.
+    # These should never include anything from anywhere else, and therefore
+    # never have path components in their filenames.
     for srcinclude in $INCLUDES; do
 
         # Collect the dependencies in the /include directory.
         # NOTE: This deliberately ignores '\include's with leading spaces.
+        #       This script isn't smart enought to reconize '%{ %}'
+        #       documentation blocks, which may contain indented '\include'
+        #       statements.
         INCLUDES="$INCLUDES `grep '^\\\\include' $srcinclude | \
             awk -F '"' '{print $2}' | \
             sort -u | \
-            sed 's/\.\././'`"
+            sed 's!^!./include/!'`"
 
     done
 
